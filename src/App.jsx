@@ -1,35 +1,51 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { getArticles } from './api';
+import Nav from './Nav';
+import Header from './Header';
+import HomePage from './HomePage';
+import SingleArticlePage from './SingleArticlePage';
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  const [articles, setArticles] = useState([]);
+  const [filteredArticles, setFilteredArticles] = useState([]);
+  const [filterTopic, setFilterTopic] = useState(null);
+
+  useEffect(() => {
+    getArticles()
+      .then(data => {
+        setArticles(data.articles);
+        setFilteredArticles(data.articles);
+      })
+      .catch(error => {
+        console.error('Error fetching articles:', error);
+      });
+  }, []);
+
+  useEffect(() => {
+    if (!filterTopic) {
+      setFilteredArticles(articles);
+    } else {
+      setFilteredArticles(articles.map(article => article.topic === filterTopic));
+    }
+  }, [filterTopic, articles]);
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <Router>
+      <div className="app">
+        <Nav setFilterTopic={setFilterTopic} />
+        <Header />
+        <Switch>
+          <Route path="/" exact>
+            <HomePage articles={filteredArticles} />
+          </Route>
+          <Route path="/single-article/:id">
+            <SingleArticlePage articles={articles} />
+          </Route>
+        </Switch>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    </Router>
+  );
+};
 
-export default App
+export default App;
