@@ -1,10 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 export function Nav({ setFilterTopic}) {
+    const navigate = useNavigate()
+
     const handleChange = (e) => {
         setFilterTopic(e.target.value)
+        navigate("/")
     }
 
 return (
@@ -13,7 +16,7 @@ return (
         name="topics"
         id="topics"
         onChange={handleChange}>
-          <option value={undefined} >All Items</option>
+          <option value="" >All Items</option>
           <option value="coding">Coding Articles</option>
           <option value="cooking">Cooking Articles</option>
           <option value="football">Football Articles</option>
