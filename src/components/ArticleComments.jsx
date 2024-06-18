@@ -8,7 +8,6 @@ return (
         comments.map(comment => (
             <div key={comment.comment_id} className="comment">
                 <p><strong>Written by {comment.author} on {new Date(comment.created_at).toLocaleDateString()}:</strong><br />"{comment.body}"</p>
-            
             </div>
         )))}
     </section>
