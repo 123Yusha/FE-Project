@@ -12,11 +12,12 @@ export function Nav({ setFilterTopic}) {
 
 return (
     <nav>
-        <select
+        <label for="topics">Select news category: </label>
+        <select 
         name="topics"
         id="topics"
         onChange={handleChange}>
-          <option value="" >All Items</option>
+          <option value="" >All Articles</option>
           <option value="coding">Coding Articles</option>
           <option value="cooking">Cooking Articles</option>
           <option value="football">Football Articles</option>
