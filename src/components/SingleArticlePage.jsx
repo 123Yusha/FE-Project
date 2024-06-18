@@ -1,21 +1,37 @@
 import React, {useState, useEffect} from "react";
 import { useParams } from "react-router-dom";
-import { getArticleById } from "../api";
+import { getArticleById, getCommentsByArticleId } from "../api";
+import { ArticleComments } from "./ArticleComments";
 
 
 export function SingleArticlePage() {
 const { id } = useParams()
 const [article, setArticle] = useState({})
+const [comments, setComments] = useState([])
+const [loading, setLoading] = useState(true)
 
 useEffect(() => {
+    setLoading(true)
     getArticleById(id)
       .then(data => {
         setArticle(data.article);
+        setLoading(false)
+      })
+      .catch(error => {
+        console.error('Error fetching article:', error);
+      });
+    getCommentsByArticleId(id)
+        .then(data => {
+        setComments(data.comments);
       })
       .catch(error => {
         console.error('Error fetching article:', error);
       });
   }, [id]);
+
+  if (loading) {
+    return <div>Page is loading...</div>;
+  }
 
   return (
     <main>
@@ -28,6 +44,8 @@ useEffect(() => {
             <p>{article.votes} People say they liked this article!</p>
             <h3>Comments:</h3>
             <p>This article has been commented on {article.comment_count} times!</p>
+
+            <ArticleComments comments={comments}/>
          </div>
     </main>
   )

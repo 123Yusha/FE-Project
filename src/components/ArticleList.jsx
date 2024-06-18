@@ -5,15 +5,24 @@ import { useState, useEffect } from "react";
 
 export default function ArticleList({filterTopic}) {
     const [articles, setArticles] = useState([]);
+    const [loading, setLoading] = useState(true)
+
     useEffect(() => {
+        setLoading(true)
         getArticles(filterTopic)
             .then(data => {
                 setArticles(data.articles); 
+                setLoading(false)
             })
             .catch(error => {
                 console.error('Error fetching articles:', error);
             });
     }, [filterTopic]);
+
+    if (loading) {
+        return <div>Page is loading...</div>;
+      }
+      
     return (
         <main>
             <h2> Articles </h2>
