@@ -24,5 +24,15 @@ export const getArticleById = (id) => {
     })
 }
 
+export const getCommentsByArticleId = (id) => {
+
+    return myApi.get(`/articles/${id}/comments`).then((response) => {
+        return response.data
+    })
+    .catch(error => {
+        console.log("Error fetching articles:", error)
+    })
+}
+
 
 
