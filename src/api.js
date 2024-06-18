@@ -34,5 +34,17 @@ export const getCommentsByArticleId = (id) => {
     })
 }
 
+export const upvoteArticle = (id) => {
+    return myApi.patch(`/articles/${id}`, { votes: 'increment' }).then((response) => {
+      return response.data;
+    });
+  };
+  
+  export const downvoteArticle = (id) => {
+    return myApi.patch(`/articles/${id}`, { votes: 'decrement' }).then((response) => {
+      return response.data;
+    });
+  };
+
 
 

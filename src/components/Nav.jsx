@@ -12,7 +12,7 @@ export function Nav({ setFilterTopic}) {
 
 return (
     <nav>
-        <label for="topics">Select news category: </label>
+        <label>Select news category: </label>
         <select 
         name="topics"
         id="topics"
