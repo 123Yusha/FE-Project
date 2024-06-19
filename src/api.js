@@ -46,5 +46,13 @@ export const patchUpVoteArticle = (id) => {
       });
     };
 
+export const postComment = (articleId, newCommentData) => {
+    return myApi.post(`/articles/${articleId}/comments`, newCommentData)
+    .then(response => response.data)
+    .catch(error => {
+      console.log("Error posting comment", error);
+    });
+}
+
 
 

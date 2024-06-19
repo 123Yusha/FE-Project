@@ -30,7 +30,7 @@ return (
     <div className="voting-buttons">
       <button onClick={handleUpVote}>I like this article &#128522; </button>
       <button onClick={handleDownVote}>I dislike this article &#128545; </button>
-      <p>For every like, the vote increases. For every dislike, the vote decreases. This article is currently sat on {votes} votes.</p>
+      <p>This article is currently sat on {votes} votes.</p>
       {error && <p className="error">{error}</p>}
     </div>
 )
