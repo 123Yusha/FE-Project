@@ -34,17 +34,17 @@ export const getCommentsByArticleId = (id) => {
     })
 }
 
-export const upvoteArticle = (id) => {
-    return myApi.patch(`/articles/${id}`, { votes: 'increment' }).then((response) => {
+export const patchUpVoteArticle = (id) => {
+    return myApi.patch(`/articles/${id}`, { inc_votes: 1 }).then((response) => {
       return response.data;
     });
   };
   
-  export const downvoteArticle = (id) => {
-    return myApi.patch(`/articles/${id}`, { votes: 'decrement' }).then((response) => {
-      return response.data;
-    });
-  };
+  export const patchDownVoteArticle = (id) => {
+    return myApi.patch(`/articles/${id}`, { inc_votes: -1 }).then((response) => {
+        return response.data;
+      });
+    };
 
 
 
