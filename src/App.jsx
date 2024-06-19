@@ -5,6 +5,7 @@ import { Nav } from './components/Nav';
 import { Header } from './components/Header';
 import { Homepage } from './components/Homepage';
 import { SingleArticlePage } from './components/SingleArticlePage';
+import './App.css'
 
 const App = () => {
   const [filterTopic, setFilterTopic] = useState("");

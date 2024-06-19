@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import { useParams } from "react-router-dom";
 import { getArticleById, getCommentsByArticleId } from "../api";
 import { ArticleComments } from "./ArticleComments";
+import { VotingButtons } from "./VotingButtons";
 
 
 export function SingleArticlePage() {
@@ -40,8 +41,8 @@ useEffect(() => {
             <p>An article about {article.topic} written by {article.author} on {new Date(article.created_at).toLocaleDateString()}</p>
             <img src={article.article_img_url} alt={article.title} />
             <p>{article.body}</p>
-            <h3>Likes:</h3>
-            <p>{article.votes} People say they liked this article!</p>
+            <h3>Article votes:</h3>
+            <VotingButtons articleId={article.article_id} initialVotes={article.votes} />
             <h3>Comments:</h3>
             <p>This article has been commented on {article.comment_count} times!</p>
 
