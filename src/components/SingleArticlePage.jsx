@@ -19,29 +19,37 @@ export function SingleArticlePage() {
         setLoading(false);
       })
       .catch((error) => {
-        console.error("Error fetching article:", error);
+        console.error('Error fetching article:', error);
       });
     getCommentsByArticleId(id)
       .then((data) => {
-        console.log(data.comments, "<<<<<<<<<<<<<<here")
         setComments(data.comments);
       })
       .catch((error) => {
-        console.error("Error fetching comments:", error);
+        console.error('Error fetching comments:', error);
       });
   }, [id]);
 
-  const addComment = (newComment) => {
-    setComments([newComment, ...comments]);
-  };
+  const handlePostComment = (commentBody, author) => {
+    const newCommentData = {
+      body: commentBody,
+      author: author,
+    };
 
-  const handlePostComment = (newCommentData) => {
+    setComments([{
+      ...newCommentData,
+      created_at: new Date().toISOString(), // Assume server wont take care of this?
+      article_id: article.article_id, // Assume server wont take care of this?
+      votes: 0, // Assume server wont take care of this?
+    }, ...comments]);
+
     postComment(article.article_id, newCommentData)
       .then((newComment) => {
-        addComment(newComment);
+        setComments([newComment, ...comments]);
+        alert("Comment posted!");
       })
       .catch((error) => {
-        console.error("Error posting comment:", error);
+        alert("Failed to post comment", error);
       });
   };
 
@@ -63,7 +71,7 @@ export function SingleArticlePage() {
         <VotingButtons articleId={article.article_id} initialVotes={article.votes} />
         <h3>Comments:</h3>
         <p>This article has been commented on {article.comment_count} times!</p>
-        <CommentForm handlePostComment={handlePostComment} />
+        <CommentForm onSubmit={handlePostComment} />
         <ArticleComments comments={comments} />
       </div>
     </main>

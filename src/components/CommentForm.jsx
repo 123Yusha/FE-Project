@@ -1,33 +1,25 @@
 import React, { useState } from "react";
 
-export function CommentForm({ handlePostComment }) {
-  const [commentBody, setCommentBody] = useState("");
+export function CommentForm({ onSubmit }) {
+
   const [author, setAuthor] = useState("");
+  const [body, setBody] = useState("");
 
-  let currentDate = new Date();
-  let formattedDate = currentDate.toISOString();
-
-const handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-
-    const newCommentData = {
-    article_id: articleId,
-    author: author,
-    body: commentBody,
-    comment_id: 12,
-    created_at: formattedDate,
-    votes: 0
-};
-
-    handlePostComment(newCommentData);
-    setCommentBody("");
-    setAuthor("")
+    if (!author || !body) {
+      alert("Please fill out all fields.");
+      return;
+    }
+    onSubmit({ author, body });
+    setAuthor("");
+    setBody("");
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form>
       <label>
-        Your Name:
+        Author Name:{" "}
         <input
           type="text"
           value={author}
@@ -37,15 +29,15 @@ const handleSubmit = (e) => {
       </label>
       <br />
       <label>
-        Comment:
+        Comment:{" "}
         <textarea
-          value={commentBody}
-          onChange={(e) => setCommentBody(e.target.value)}
+          value={body}
+          onChange={(e) => setBody(e.target.value)}
           required
         />
       </label>
       <br />
-      <button type="submit">Post Comment</button>
+      <button type="submit" onClick={handleSubmit}>Post Comment</button>
     </form>
   );
 }
