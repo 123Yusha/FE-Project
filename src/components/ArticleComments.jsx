@@ -1,6 +1,9 @@
 import React from "react";
 
+
 export function ArticleComments({ comments }) {
+    if (!comments || comments.length === 0) {
+        return <p>No comments yet!</p>; }
 return (
     <section className="comments">
         {comments.length === 0 ? (<p>No comments yet!</p>) : (
