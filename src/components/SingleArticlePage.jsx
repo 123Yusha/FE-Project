@@ -30,29 +30,7 @@ export function SingleArticlePage() {
       });
   }, [id]);
 
-  const handlePostComment = (commentBody, author) => {
-    const newCommentData = {
-      body: commentBody,
-      author: author,
-    };
-
-    setComments([{
-      ...newCommentData,
-      created_at: new Date().toISOString(), // Assume server wont take care of this?
-      article_id: article.article_id, // Assume server wont take care of this?
-      votes: 0, // Assume server wont take care of this?
-    }, ...comments]);
-
-    postComment(article.article_id, newCommentData)
-      .then((newComment) => {
-        setComments([newComment, ...comments]);
-        alert("Comment posted!");
-      })
-      .catch((error) => {
-        alert("Failed to post comment", error);
-      });
-  };
-
+  
   if (loading) {
     return <div>Page is loading...</div>;
   }
@@ -71,7 +49,7 @@ export function SingleArticlePage() {
         <VotingButtons articleId={article.article_id} initialVotes={article.votes} />
         <h3>Comments:</h3>
         <p>This article has been commented on {article.comment_count} times!</p>
-        <CommentForm onSubmit={handlePostComment} />
+        <CommentForm setComments={setComments} article_id={article.article_id} />
         <ArticleComments comments={comments} />
       </div>
     </main>
