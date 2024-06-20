@@ -30,7 +30,6 @@ export function SingleArticlePage() {
       });
   }, [id]);
 
-  
   if (loading) {
     return <div>Page is loading...</div>;
   }
