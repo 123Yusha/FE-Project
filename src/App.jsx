@@ -14,7 +14,7 @@ const App = () => {
     <BrowserRouter>
       <div className="app">
         <Header />
-        <Nav setFilterTopic={setFilterTopic} />
+        <Nav setFilterTopic={setFilterTopic} filterTopic={filterTopic} />
         <Routes>
           <Route path="/" element={<Homepage filterTopic={filterTopic} />}/>
           

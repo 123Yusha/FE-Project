@@ -1,27 +1,36 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 
-export function Nav({ setFilterTopic}) {
-    const navigate = useNavigate()
-
-    const handleChange = (e) => {
-        setFilterTopic(e.target.value)
-        navigate("/")
-    }
-
-return (
-    <nav>
-        <label>Select news category: </label>
-        <select 
-        name="topics"
-        id="topics"
-        onChange={handleChange}>
-          <option value="" >All Articles</option>
-          <option value="coding">Coding Articles</option>
-          <option value="cooking">Cooking Articles</option>
-          <option value="football">Football Articles</option>
-        </select>
-    </nav>
-)
-}
+export function Nav({ setFilterTopic, filterTopic }) {
+    const handleTopicChange = (topic) => {
+      setFilterTopic(topic);
+    };
+  
+    return (
+      <nav>
+        <ul>
+          <li>
+            <Link to="/" onClick={() => handleTopicChange('')}>
+              All Articles
+            </Link>
+          </li>
+          <li>
+            <Link to="/" onClick={() => handleTopicChange('coding')}>
+              Coding Articles
+            </Link>
+          </li>
+          <li>
+            <Link to="/" onClick={() => handleTopicChange('cooking')}>
+              Cooking Articles
+            </Link>
+          </li>
+          <li>
+            <Link to="/" onClick={() => handleTopicChange('football')}>
+              Football Articles
+            </Link>
+          </li>
+        </ul>
+      </nav>
+    );
+  }
