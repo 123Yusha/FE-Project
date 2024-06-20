@@ -54,5 +54,14 @@ export const postComment = (articleId, newCommentData) => {
     });
 }
 
+export const deleteComment = (commentId) => {
+    return myApi.delete(`/comments/${commentId}`)
+      .then(response => {
+        return response.data;
+      })
+  };
+
+
+
 
 

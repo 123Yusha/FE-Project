@@ -17,8 +17,10 @@ export function CommentForm({ setComments, article_id }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     if (!author || !body) {
       alert("Please fill out all fields.");
+      return;
     }
 
     if (!validUsernames.includes(author)) {
@@ -30,6 +32,7 @@ export function CommentForm({ setComments, article_id }) {
       body: body, 
       username: author,
     };
+
     postComment(article_id, newCommentData)
       .then((newComment) => {
         setComments(currentcomments => ([newComment.comment, ...currentcomments]));
@@ -38,6 +41,7 @@ export function CommentForm({ setComments, article_id }) {
       .catch((error) => {
         alert("Failed to post comment", error);
       });
+
     setAuthor("");
     setBody("");
   };
@@ -45,9 +49,7 @@ export function CommentForm({ setComments, article_id }) {
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <label htmlFor="author-name">
-          Username:
-        </label>
+        <label htmlFor="author-name">Username:</label>
         <input
           type="text"
           placeholder="Enter valid username"
@@ -75,7 +77,9 @@ export function CommentForm({ setComments, article_id }) {
         />
       </div>
       <br />
-      <button type="submit">Post Comment</button>
+      <label htmlFor="postcomment">Click to post comment:</label>
+      <button id="postcomment" type="submit">Post Comment</button>
+      <br />
     </form>
   );
 }

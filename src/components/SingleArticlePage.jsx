@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { getArticleById, getCommentsByArticleId, postComment } from "../api";
+import { getArticleById, getCommentsByArticleId, postComment, deleteComment } from "../api";
 import { ArticleComments } from "./ArticleComments";
 import { VotingButtons } from "./VotingButtons";
 import { CommentForm } from "./CommentForm";
+import { DeleteComment } from "./DeleteComment";
 
 export function SingleArticlePage() {
   const { id } = useParams();
@@ -30,6 +31,10 @@ export function SingleArticlePage() {
       });
   }, [id]);
 
+  const handleCommentDelete = (deletedCommentId) => {
+    setComments((prevComments) => prevComments.filter(comment => comment.comment_id !== deletedCommentId));
+  };
+
   if (loading) {
     return <div>Page is loading...</div>;
   }
@@ -46,10 +51,10 @@ export function SingleArticlePage() {
         <p>{article.body}</p>
         <h3>Article votes:</h3>
         <VotingButtons articleId={article.article_id} initialVotes={article.votes} />
-        <h3>Comments:</h3>
+        <h3>Add A Comment:</h3>
         <p>This article has been commented on {article.comment_count} times!</p>
         <CommentForm setComments={setComments} article_id={article.article_id} />
-        <ArticleComments comments={comments} />
+        <ArticleComments comments={comments} setComments={setComments} />
       </div>
     </main>
   );
