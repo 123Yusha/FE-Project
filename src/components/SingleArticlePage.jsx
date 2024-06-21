@@ -5,22 +5,33 @@ import { ArticleComments } from "./ArticleComments";
 import { VotingButtons } from "./VotingButtons";
 import { CommentForm } from "./CommentForm";
 import { DeleteComment } from "./DeleteComment";
+import NotFound from "./NotFound";
 
 export function SingleArticlePage() {
   const { id } = useParams();
   const [article, setArticle] = useState({});
   const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
 
   useEffect(() => {
     setLoading(true);
+    setError()
+
     getArticleById(id)
       .then((data) => {
+        if (!data.article) {
+          setError("Article not found");
+          setLoading(false);
+          return;
+        }
         setArticle(data.article);
         setLoading(false);
       })
       .catch((error) => {
         console.error('Error fetching article:', error);
+        setError("Error fetching article")
+        setLoading(false);
       });
     getCommentsByArticleId(id)
       .then((data) => {
@@ -37,6 +48,9 @@ export function SingleArticlePage() {
 
   if (loading) {
     return <div>Page is loading...</div>;
+  }
+  if (error) {
+    return <NotFound />;
   }
 
   return (

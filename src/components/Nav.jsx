@@ -1,33 +1,27 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export function Nav() {
-  const navigate = useNavigate();
-
-  const handleTopicChange = (topic) => {
-    navigate(`/?topic=${topic}`);
-  };
-
   return (
     <nav>
       <ul>
         <li>
-          <Link to="/" onClick={() => handleTopicChange('')}>
+          <Link to="/">
             All Articles
           </Link>
         </li>
         <li>
-          <Link to="/?topic=coding" onClick={() => handleTopicChange('coding')}>
+          <Link to="/?topic=coding">
             Coding Articles
           </Link>
         </li>
         <li>
-          <Link to="/?topic=cooking" onClick={() => handleTopicChange('cooking')}>
+          <Link to="/?topic=cooking">
             Cooking Articles
           </Link>
         </li>
         <li>
-          <Link to="/?topic=football" onClick={() => handleTopicChange('football')}>
+          <Link to="/?topic=football">
             Football Articles
           </Link>
         </li>
