@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Routes, Route} from 'react-router-dom';
+import React, { useState } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { getArticles } from './api';
 import { Nav } from './components/Nav';
 import { Header } from './components/Header';
@@ -16,9 +16,11 @@ const App = () => {
         <Header />
         <Nav setFilterTopic={setFilterTopic} filterTopic={filterTopic} />
         <Routes>
+
           <Route path="/" element={<Homepage filterTopic={filterTopic} />}/>
-          
           <Route path="/articles/:id" element={<SingleArticlePage />} />
+          
+           
        </Routes>
        </div>
     </BrowserRouter>
