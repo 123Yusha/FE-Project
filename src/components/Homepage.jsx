@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import ArticleList from './ArticleList';
 import { getArticles } from '../api';
 
+
 export function Homepage() {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -10,12 +11,15 @@ export function Homepage() {
   const topic = searchParams.get('topic') || '';
   const sortByParam = searchParams.get('sortBy') || 'created_at';
   const sortOrderParam = searchParams.get('order') || 'desc';
-
+  
   const [sortBy, setSortBy] = useState(sortByParam);
   const [sortOrder, setSortOrder] = useState(sortOrderParam);
+  const [error, setError] = useState('');
 
   useEffect(() => {
     setLoading(true);
+    setError('');
+
     getArticles(topic)
       .then(data => {
         let sortedArticles = data.articles;
@@ -41,6 +45,7 @@ export function Homepage() {
       })
       .catch(error => {
         console.error('Error fetching articles:', error);
+        setError('Failed to fetch articles. Please try again later.');
         setLoading(false);
       });
   }, [topic, sortBy, sortOrder]);
@@ -63,6 +68,7 @@ export function Homepage() {
 
   return (
     <main>
+      {error && <div className="error-message">{error}</div>}
       <div>
         <label>Sort By:</label>
         <select value={sortBy} onChange={handleSortByChange}>
@@ -80,3 +86,4 @@ export function Homepage() {
     </main>
   );
 }
+

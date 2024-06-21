@@ -4,6 +4,7 @@ import { Nav } from './components/Nav';
 import { Header } from './components/Header';
 import { Homepage } from './components/Homepage';
 import { SingleArticlePage } from './components/SingleArticlePage';
+import NotFound from './components/NotFound';
 import './App.css';
 
 const App = () => {
@@ -15,6 +16,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/articles/:id" element={<SingleArticlePage />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
     </Router>
