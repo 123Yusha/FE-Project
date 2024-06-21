@@ -24,7 +24,6 @@ export function Homepage() {
             let valueA = a[sortBy];
             let valueB = b[sortBy];
 
-            // Convert comment_count to number for accurate sorting
             if (sortBy === 'comment_count') {
               valueA = Number(a[sortBy]);
               valueB = Number(b[sortBy]);
