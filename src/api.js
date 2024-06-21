@@ -5,10 +5,12 @@ baseURL: "https://be-project-nc.onrender.com/api"
 })
 
 export const getArticles = (filterTopic) => {
+    const queryParams = filterTopic ? { params: { topic: filterTopic } } : {};
 
-    return myApi.get("/articles", {params: {topic: filterTopic}}).then((response) => {
-        return response.data
-    })
+    return myApi.get("/articles", queryParams)
+        .then((response) => {
+            return response.data;
+        })
     .catch(error => {
         console.log("Error fetching articles:", error)
     })
