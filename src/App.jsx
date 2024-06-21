@@ -1,29 +1,23 @@
-import React, { useState } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { getArticles } from './api';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Nav } from './components/Nav';
 import { Header } from './components/Header';
 import { Homepage } from './components/Homepage';
 import { SingleArticlePage } from './components/SingleArticlePage';
-import './App.css'
+import './App.css';
 
 const App = () => {
-  const [filterTopic, setFilterTopic] = useState("");
-
   return (
-    <BrowserRouter>
+    <Router>
       <div className="app">
         <Header />
-        <Nav setFilterTopic={setFilterTopic} filterTopic={filterTopic} />
+        <Nav />
         <Routes>
-
-          <Route path="/" element={<Homepage filterTopic={filterTopic} />}/>
+          <Route path="/" element={<Homepage />} />
           <Route path="/articles/:id" element={<SingleArticlePage />} />
-          
-           
-       </Routes>
-       </div>
-    </BrowserRouter>
+        </Routes>
+      </div>
+    </Router>
   );
 };
 

@@ -5,9 +5,8 @@ baseURL: "https://be-project-nc.onrender.com/api"
 })
 
 export const getArticles = (filterTopic) => {
-    const queryParams = filterTopic ? { params: { topic: filterTopic } } : {};
 
-    return myApi.get("/articles", queryParams)
+    return myApi.get("/articles", { params: { topic: filterTopic } })
         .then((response) => {
             return response.data;
         })
