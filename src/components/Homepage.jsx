@@ -69,18 +69,22 @@ export function Homepage() {
   return (
     <main>
       {error && <div className="error-message">{error}</div>}
-      <div>
+      <div className="sort-section">
+        <div className="sort-dropdown">
         <label>Sort By:</label>
         <select value={sortBy} onChange={handleSortByChange}>
           <option value="created_at">Date</option>
           <option value="comment_count">Comment Count</option>
           <option value="votes">Votes</option>
         </select>
+        </div>
+        <div className="sort-dropdown">
         <label>Order:</label>
         <select value={sortOrder} onChange={handleSortOrderChange}>
           <option value="desc">Descending</option>
           <option value="asc">Ascending</option>
         </select>
+        </div>
       </div>
       <ArticleList articles={articles} />
     </main>

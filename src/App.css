@@ -1,22 +1,127 @@
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
-
 .header {
+  position: relative;
+  height: 250px;
+  background-color: #f4f4f4;
+  margin: 0;
+  border-radius: 25px;
   display: flex;
-  justify-content: center; 
-  align-items: center;     
-  height: 200px;           
-  background-color: #f4f4f4; 
-  margin: 20px auto;       
+  flex-direction: column;
+  justify-content: flex-end; /* Align items at the bottom */
+  align-items: center; /* Center items horizontally */
+  padding-bottom: 10px; /* Add padding to the bottom of the header */
 }
 
-.header-title {
-  font-size: 2.5em;
-  color: #333; 
+.header-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
+.header-logo {
+  height: auto; /* Ensure the logo scales with its container */
+  max-height: 100%; /* Limit the maximum height of the logo */
+  margin-bottom: 10px; /* Adjust vertical margin between logo and nav */
+}
+
+nav {
+  margin-top: 0; /* Adjust vertical margin between logo and nav */
+}
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+
+nav ul li {
+  margin-right: 15px; /* Adjust spacing between navigation items */
+}
+
+nav ul li:last-child {
+  margin-right: 0; /* Remove margin from last item */
+}
+
+.active-link {
+  color: #4a4a4a;
+  font-size: 17px;;
+  font-family: 'Roboto', sans-srif;
+  font-weight: 400;
+  font-style: italic;
+  font-weight: bold; /* Make the active link bold */
+  padding: 2px 8px; /* Add padding to create space for the yellow box */
+  background-color: #ffe882; /* Yellow background for active link */
+  border: 1px solid #ff3134; /* Orange border around the active link */
+  border-radius: 8px; /* Rounded corners for the border */
+}
+
+.article-list {
+  padding: 20px;
+}
+
+.article-card {
+  background-color: #f4f4f4;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+
+.article-card h2 {
+  margin-bottom: 10px;
+}
+
+.article-card img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  
+}
+.body-text {
+  color: #4a4a4a;
+  font-size: 17px;;
+  font-family: 'Roboto', sans-srif;
+  font-weight: 400;
+  font-style: regular;
+}
+
+
+
+.nav-link:not(.active-link) {
+  color: #4a4a4a;
+  font-size: 17px;;
+  font-family: 'Roboto', sans-srif;
+  font-weight: 400;
+  font-style: regular;
+}
+
+.nav-link:not(.active-link):hover {
+  color: #007bff;
+}
+.sort-section {
+  display: flex;
+  align-items: center;
+  padding-top: 20px; 
+}
+
+.sort-dropdown {
+  background-color: #f4f4f4;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.sort-dropdown label {
+  margin-right: 10px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.sort-dropdown select {
+  padding: 5px;
+  font-family: 'Roboto', sans-serif;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}

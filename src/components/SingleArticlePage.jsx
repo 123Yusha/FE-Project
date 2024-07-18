@@ -54,19 +54,19 @@ export function SingleArticlePage() {
   }
 
   return (
-    <main>
-      <div className="single-article">
+    <main className='article-list'>
+      <div className="article-card">
         <h2>{article.title}</h2>
-        <p>
+        <p className="body-text">
           An article about {article.topic} written by {article.author} on{" "}
           {new Date(article.created_at).toLocaleDateString()}
         </p>
         <img src={article.article_img_url} alt={article.title} />
-        <p>{article.body}</p>
+        <p className="body-text">{article.body}</p>
         <h3>Article votes:</h3>
         <VotingButtons articleId={article.article_id} initialVotes={article.votes} />
         <h3>Add A Comment:</h3>
-        <p>This article has been commented on {article.comment_count} times!</p>
+        <p className="body-text">This article has been commented on {article.comment_count} times!</p>
         <CommentForm setComments={setComments} article_id={article.article_id} />
         <ArticleComments comments={comments} setComments={setComments} />
       </div>

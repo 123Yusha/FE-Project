@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -15,27 +17,49 @@
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: #020315;
   text-decoration: inherit;
 }
 a:hover {
-  color: #535bf2;
+  color: #161b84;
 }
 
 body {
-  margin: 0;
+  margin: 20px;
   padding: 20px; 
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   background-color: #ffffff;
 }
 
 h1 {
-  font-size: 3.2em;
+  font-size: 37px;
   line-height: 1.1;
+  color: #4a4a4a;
+  text-align: center;
+  font-family: 'Roboto', sans-srif;
+  font-weight: bold;
+  font-style: regular;
+}
+
+h2 {
+  font-size: 32px;
+  color: #4a4a4a;
+  font-family: 'Roboto', sans-srif;
+  font-weight: 600;
+  font-style: regular;
+}
+
+h3 {
+  font-size: 18px;
+  color: #4a4a4a;
+  font-family: 'Roboto', sans-srif;
+  font-weight: 500;
+  font-style: regular;
+  
 }
 
 button {
-  border-radius: 8px;
+  border-radius: 18px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
   font-size: 1em;
@@ -44,9 +68,10 @@ button {
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
+  
 }
 button:hover {
-  border-color: #646cff;
+  border-color: #161b84;
 }
 button:focus,
 button:focus-visible {
@@ -59,9 +84,10 @@ button:focus-visible {
     background-color: #ffffff;
   }
   a:hover {
-    color: #747bff;
+    color: #161b84;
   }
   button {
-    background-color: #f9f9f9;
+    background-color: #c0bbbb;
+    margin: 5px
   }
 }
